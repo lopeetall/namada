@@ -1,5 +1,4 @@
 use std::collections::BTreeMap;
-use std::str::FromStr;
 
 use borsh::BorshSerialize;
 use namada_sdk::address::Address;
@@ -39,7 +38,7 @@ pub(in crate::transaction) fn build_tx(
     let mut inner_tx = Tx::new(chain_id, expiration);
 
     inner_tx.header.timestamp =
-        DateTimeUtc::from_str("2000-01-01T00:00:00Z").unwrap();
+        DateTimeUtc::now();
     inner_tx.add_code_from_hash(code_hash, Some(code_tag));
     inner_tx.add_data(data);
 

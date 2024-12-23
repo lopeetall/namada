@@ -1,5 +1,3 @@
-use std::str::FromStr;
-
 use namada_sdk::address::Address;
 use namada_sdk::hash::Hash;
 pub use namada_sdk::ibc::apps::transfer::types::msgs::transfer::MsgTransfer;
@@ -31,7 +29,7 @@ impl IbcTransfer {
     ) -> Self {
         let mut tx = Tx::new(chain_id, expiration);
         tx.header.timestamp =
-            DateTimeUtc::from_str("2000-01-01T00:00:00Z").unwrap();
+            DateTimeUtc::now();
         tx.add_code_from_hash(code_hash, Some(TX_IBC_WASM.to_string()));
 
         let mut data = vec![];
